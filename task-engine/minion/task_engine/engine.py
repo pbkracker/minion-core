@@ -161,6 +161,69 @@ PLANS['zapfull'] = {
     ]
 }
 
+PLANS['arachnilight'] = {
+    'name': 'arachnilight',
+    'description': 'Run Arachni with limited settings searching primarily for XSS.',
+    'workflow': [
+        {
+            'plugin_name': 'minion.plugins.arachni.ArachniPlugin',
+            'description': "Run Arachni with limited settings searching primarily for XSS.",
+            'configuration': {
+                'scan': True,
+                'audit_links': True,
+                'link_count': 5,
+                'audit_forms': True,
+                'audit_cookies': False,
+                'audit_headers': False,
+                'modules': 'xss*',
+                'follow_subdomains': False
+            }
+        }
+    ]
+}
+
+PLANS['arachnimedium'] = {
+    'name': 'arachnimedium',
+    'description': 'Run Arachni with limited settings searching for XSS, SQLi, and Path Traversal.',
+    'workflow': [
+        {
+            'plugin_name': 'minion.plugins.arachni.ArachniPlugin',
+            'description': "Run Arachni with limited settings searching for XSS, SQLi, and Path Traversal.",
+            'configuration': {
+                'scan': True,
+                'audit_links': True,
+                'link_count': 5,
+                'audit_forms': True,
+                'audit_cookies': False,
+                'audit_headers': False,
+                'modules': 'xss*, path_traversal, audit/sqli*',
+                'follow_subdomains': False
+            }
+        }
+    ]
+}
+
+PLANS['arachnifull'] = {
+    'name': 'arachnifull',
+    'description': 'Run the Arachni with full settings.  This will probably never complete.',
+    'workflow': [
+        {
+            'plugin_name': 'minion.plugins.arachni.ArachniPlugin',
+            'description': "Run Arachni with everything turned on.",
+            'configuration': {
+                'scan': True,
+                'audit_links': True,
+                'link_count': 250,
+                'audit_forms': True,
+                'audit_cookies': True,
+                'audit_headers': True,
+                'modules': '*',
+                'follow_subdomains': True
+            }
+        }
+    ]
+}
+
 
 PLUGIN_SERVICE_API = "http://localhost:8181"
 PLUGIN_SERVICE_POLL_INTERVAL = 1.0
