@@ -242,6 +242,13 @@ class PluginServiceApplication(cyclone.web.Application):
             pass
 
         try:
+            from minion.plugins.arachni import ArachniPlugin
+            self.plugin_service.register_plugin(ArachniPlugin)
+        except ImportError as e:
+            print "Cannot import Arachni plugin.  {}".format(e)
+            pass
+
+        try:
             from minion.plugins.garmr import GarmrPlugin
             self.plugin_service.register_plugin(GarmrPlugin)
         except ImportError as e:
